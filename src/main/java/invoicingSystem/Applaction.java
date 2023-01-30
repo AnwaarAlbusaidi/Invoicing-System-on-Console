@@ -3,8 +3,10 @@
  */
 package invoicingSystem;
 
-import myEvaluation.MenuItem;
-import myEvaluation.UserInputHandler;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import javax.imageio.plugins.tiff.ExifGPSTagSet;
 
 /**
  * @author LAP-8
@@ -35,7 +37,7 @@ public class Applaction {
 		subMenuManageShopItems.addItem(new MenuItem(5 , "Go Back"));
 		
 		//add the sub menu for Manage Shop Items to application main menu
-		MenuItem manageShopItemsMenuItem = new MenuItem(1, "Manage Shop Items");
+		MenuItem manageShopItemsMenuItem = new MenuItem(2, "Manage Shop Items");
 		manageShopItemsMenuItem.MarkItemAsMenu(subMenuManageShopItems);
 		
 		//add items to the application main menu and set the name
@@ -53,24 +55,84 @@ public class Applaction {
 		System.out.println();
 		applicationMainMenu.printMenu(0);
 		
-		
 		UserInputHandler manager = new UserInputHandler();
 		int choice = manager.getUserChoice();
+		Scanner scanInput = new Scanner(System.in);
 		
 		switch(choice) {
 		case 1: 
 		{
 	    	MenuItem currMenuItem = applicationMainMenu.getMenuItem(1);
             currMenuItem.menu.printMenu();
+            System.out.println("Enter your Choice :");
+            Integer userChoice = Integer.parseInt(scanInput.nextLine());
+            switch(userChoice) {
+            case 1:
+            {
+            	 System.out.println("Load Data"); 
+            	 break;
+            }
+            case 2:{
+            	System.out.println("Set Shop Name"); 
+            	break;
+            }
+            case 3:
+            {
+            	System.out.println("Set Invoice Header"); 
+            	break;
+            }
+            case 4:
+            {
+            	System.out.println("Go Back");
+            	break;
+            }
+            }
             System.out.println();
-		}
+		}//End of case 1
 		case 2:
 		{
 			MenuItem currMenuItem = applicationMainMenu.getMenuItem(2);
             currMenuItem.menu.printMenu();
             System.out.println();
+            break;
 		}
-		}//
+		case 3:
+		{
+			break;
+		}
+		case 4:
+		{
+			break;
+		}
+		case 5:
+		{
+			break;
+		}
+		case 6:
+		{
+			break;
+		}
+		case 7:
+		{
+			break;
+		}
+		case 8:
+		{
+			System.out.println("Are you sure you want to exit? If yes, program ends, if No , then main menu reprinted again");
+			String choiceString = scanInput.nextLine();
+			if(choiceString == "yes")
+			{
+				System.exit(0);
+				break;
+			}
+			else
+			{
+				applicationMainMenu.printMenu(0);
+			    break;
+			}
+		}
+		}//End of switch
+		
 	}
 
 }
