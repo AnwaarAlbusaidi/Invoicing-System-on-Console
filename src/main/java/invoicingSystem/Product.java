@@ -1,12 +1,7 @@
 
 package invoicingSystem;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
-
-import com.google.gson.Gson;
 
 public class Product {
 	  private int itemId;
@@ -40,10 +35,6 @@ public class Product {
 	  
 	  public double getAmount() {
 	    return unitPrice * quantity;
-	  }
-	  
-	  public void addItem() {
-		    
 	  }
 
 	public void setUnitPrice(double unitPrice2) {

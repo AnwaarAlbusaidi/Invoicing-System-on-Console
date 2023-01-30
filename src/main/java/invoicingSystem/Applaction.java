@@ -16,7 +16,7 @@ public class Applaction {
 		Menu applicationMainMenu = new Menu();
 		Shop shop= new Shop("grocerie Shop", "91234567", "24412345", "grocerieShop@gamil.com", "grocerie.com");
 		Invoice invoice = null;
-		
+		boolean program = true;
 		//create the sub menu for Shop Settings
 		Menu subMenuShopSettings = new Menu();
 		subMenuShopSettings.setName("Shop Settings");
@@ -58,9 +58,9 @@ public class Applaction {
 		UserInputHandler manager = new UserInputHandler();
 		System.out.println("Enter your choice: ");
 		int choice = manager.getUserChoice();
-		
+		//while(program == true) {
 		switch(choice) {
-		case 1: 
+		case 1:
 		{
 	    	MenuItem currMenuItem = applicationMainMenu.getMenuItem(1);
 	    	System.out.println(subMenuShopSettings.getName());
@@ -88,8 +88,10 @@ public class Applaction {
             }
             case 4:
             {
-            	System.out.println("Go Back");
-            	break;
+            	applicationMainMenu.Show(0);
+            	System.out.println("Enter your choice: ");
+                choice = manager.getUserChoice();
+            	 break; 
             }
             }
             break; 
@@ -128,7 +130,7 @@ public class Applaction {
             }
             case 5:
             {
-            	System.out.println("Go Back");
+            	applicationMainMenu.Show(0);
             	break;
             }
             }//End of switch userChoice2
@@ -161,7 +163,6 @@ public class Applaction {
 			if(choiceString == "yes" ||choiceString == "YES" )
 			{
 				break;
-				//System.exit(0);
 			}
 			else
 			{
@@ -170,7 +171,7 @@ public class Applaction {
 			}
 		}
 		}//End of switch
-		
+	//	}//End of while
 	}
 
 }

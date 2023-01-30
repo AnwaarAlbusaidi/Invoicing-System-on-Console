@@ -1,10 +1,12 @@
 package invoicingSystem;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -130,16 +132,20 @@ public class Shop {
 		    Product product = items.get(index);
 		    product.setUnitPrice(unitPrice);
 	   }
-	   
-	   
+	    
 	   public void readAndPrintItems() {
 		   try (Reader reader = new FileReader("items.json")) {
-		     items = gson.fromJson(reader, ArrayList.class);
-		     for (Product product : items) {
-		       System.out.println(product);
+			ArrayList <Product> itemsList = gson.fromJson(reader, new TypeToken<ArrayList<Product>>(){}.getType());
+		     for (Product product : itemsList) 
+		     {
+		       System.out.println(product.getItemId());
+		       System.out.println(product.getItemName());
+		       System.out.println(product.getUnitPrice());
+		       System.out.println(product.getQuantity());
 		     }
 		   } catch (IOException e) {
 		     e.printStackTrace();
 		   }
 		 }
-}
+	
+}//End of class
