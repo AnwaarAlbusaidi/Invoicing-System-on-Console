@@ -8,7 +8,7 @@ public class Invoice {
 	 private String customerName;
 	  private String phoneNumber;
 	  private Date invoiceDate;
-	  private ArrayList<Product> products;
+	  private ArrayList<Product> items;
 	  private double totalAmount;
 	  private double paidAmount;
 	  
@@ -16,7 +16,7 @@ public class Invoice {
 	    this.customerName = customerName;
 	    this.phoneNumber = phoneNumber;
 	    this.invoiceDate = invoiceDate;
-	    this.products = products;
+	    this.items = products;
 	    
 	    for (Product product : products) {
 	      totalAmount += product.getAmount();
@@ -36,7 +36,7 @@ public class Invoice {
 	  }
 	  
 	  public ArrayList<Product> getProducts() {
-	    return products;
+	    return items;
 	  }
 	  
 	  public double getTotalAmount() {

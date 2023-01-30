@@ -25,4 +25,13 @@ public class UserInputHandler {
         }
         return choice;
     }
+    
+    public String getUserChoiceString() {
+        String choice = null;
+        while (choice == null) {
+            System.out.println("Enter your choice: ");
+            choice = userInput.nextLine();
+        }
+        return choice;
+    }
 }

@@ -4,6 +4,7 @@ package invoicingSystem;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import com.google.gson.Gson;
 
@@ -41,18 +42,8 @@ public class Product {
 	    return unitPrice * quantity;
 	  }
 	  
-	  public void addItem(Product item) {
-		    this.allItems.add(item);
-		    serializeProductList();
-		  }
-
-		  private void serializeProductList() {
-		    Gson gson = new Gson();
-		    try (FileWriter writer = new FileWriter("products.json")) {
-		     gson.toJson(allItems, writer);
-		    } catch (IOException e) {
-		      e.printStackTrace();
-		    }
-		  }
+	  public void addItem() {
+		    
+	  }
 	}
 

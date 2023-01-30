@@ -26,7 +26,7 @@ public class Menu {
 			public MenuItem getMenuItem(int id) {        
 		        return items.get(id-1);
 		    }
-			public void printMenu(int level)
+			public void Show(int level)
 			{
 			    for (MenuItem currentItem : items) {
 			        for (int i = 0; i < level; i++) {
@@ -34,7 +34,7 @@ public class Menu {
 			        }
 			        System.out.println(currentItem.id + "- " + currentItem.description);
 			        if (currentItem.isMenu()) {
-			            currentItem.menu.printMenu(level + 1);
+			            currentItem.menu.Show(level + 1);
 			        }
 			    }
 			}
