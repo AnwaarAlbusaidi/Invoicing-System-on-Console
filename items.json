@@ -1,0 +1,7 @@
+[{"itemId":123,"itemName":"apple","unitPrice":1.0,"quantity":10}]{"itemId":234,"itemName":"orange","unitPrice":1.0,"quantity":12}
+{
+  "itemId": 345,
+  "itemName": "tv",
+  "unitPrice": 100.0,
+  "quantity": 3
+}

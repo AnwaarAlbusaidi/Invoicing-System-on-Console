@@ -16,7 +16,6 @@ public class UserInputHandler {
     public int getUserChoice() {
         Integer choice = null;
         while (choice == null) {
-            System.out.println("Enter your choice: ");
             try {
                 choice = Integer.parseInt(userInput.nextLine());
             } catch (NumberFormatException e) {
@@ -29,7 +28,6 @@ public class UserInputHandler {
     public String getUserChoiceString() {
         String choice = null;
         while (choice == null) {
-            System.out.println("Enter your choice: ");
             choice = userInput.nextLine();
         }
         return choice;

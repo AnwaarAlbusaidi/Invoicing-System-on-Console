@@ -5,9 +5,10 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class Invoice {
-	 private String customerName;
+	  private String customerName;
 	  private String phoneNumber;
 	  private Date invoiceDate;
+	  private Shop shop;
 	  private ArrayList<Product> items;
 	  private double totalAmount;
 	  private double paidAmount;
@@ -22,7 +23,6 @@ public class Invoice {
 	      totalAmount += product.getAmount();
 	    }
 	  }
-	  
 	  public String getCustomerName() {
 	    return customerName;
 	  }
@@ -54,6 +54,18 @@ public class Invoice {
 	  public double getBalance() {
 	    return totalAmount - paidAmount;
 	  }
+	  
+	  public void setInvoiceHeader(Shop shop) {
+		    this.shop = shop;
+		  }
+
+		  public Shop getShop() {
+		    return shop;
+		  }
+
+		  public void setShop(Shop shop) {
+		    this.shop = shop;
+		  }
 	}
 
 

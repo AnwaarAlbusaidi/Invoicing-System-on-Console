@@ -14,7 +14,9 @@ public class Applaction {
 	   
 		//create the application main menu
 		Menu applicationMainMenu = new Menu();
-		Shop shop = null;
+		Shop shop= new Shop("grocerie Shop", "91234567", "24412345", "grocerieShop@gamil.com", "grocerie.com");
+		Invoice invoice = null;
+		
 		//create the sub menu for Shop Settings
 		Menu subMenuShopSettings = new Menu();
 		subMenuShopSettings.setName("Shop Settings");
@@ -54,8 +56,8 @@ public class Applaction {
 		applicationMainMenu.printMenu();
 		
 		UserInputHandler manager = new UserInputHandler();
+		System.out.println("Enter your choice: ");
 		int choice = manager.getUserChoice();
-		//Scanner scanInput = new Scanner(System.in);
 		
 		switch(choice) {
 		case 1: 
@@ -64,6 +66,7 @@ public class Applaction {
 	    	System.out.println(subMenuShopSettings.getName());
 			System.out.println();
             currMenuItem.menu.Show(0);
+            System.out.println("Enter your choice: ");
             int userChoice = manager.getUserChoice();
             switch(userChoice) {
             case 1:
@@ -73,14 +76,14 @@ public class Applaction {
             }
             case 2:{
             	System.out.println("Set Shop Name");
-                shop = new Shop("Anwaar Shop", "91234567", "24412345", "anwaarShop@gamil.com", "anwaar.com");
+            	shop.SetShopName();
             	shop.saveShopDetails(shop,"shop.json");
             	break;
             }
             case 3:
             {
             	System.out.println("Set Invoice Header");
-            	
+            	invoice.setInvoiceHeader(shop);
             	break;
             }
             case 4:
@@ -97,6 +100,7 @@ public class Applaction {
 			System.out.println(subMenuManageShopItems.getName());
 			System.out.println();
             currMenuItem.menu.Show(1);
+            System.out.println("Enter your choice: ");
             int userChoice2 = manager.getUserChoice();;
             switch(userChoice2) {
             case 1:
@@ -107,16 +111,19 @@ public class Applaction {
             }
             case 2:{
             	System.out.println("Delete item"); 
+            	shop.deleteItem();
             	break;
             }
             case 3:
             {
             	System.out.println("change item price"); 
+            	shop.changeItemPrice();
             	break;
             }
             case 4:
             {
             	System.out.println("Report all item");
+            	shop.readAndPrintItems();
             	break;
             }
             case 5:
@@ -149,6 +156,7 @@ public class Applaction {
 		case 8:
 		{
 			System.out.println("Are you sure you want to exit? If yes, program ends, if No , then main menu reprinted again");
+			System.out.println("Enter your input: ");
 			String choiceString = manager.getUserChoiceString();
 			if(choiceString == "yes" ||choiceString == "YES" )
 			{
