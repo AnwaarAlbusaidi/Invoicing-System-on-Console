@@ -1,7 +1,7 @@
 package invoicingSystem;
 
 /**
- * @author LAP-8
+ * Invoicing system for a groceries shop
  *
  */
 public class Applaction {
@@ -66,15 +66,17 @@ public class Applaction {
 				userChoice = manager.getUserChoice();
 				switch (userChoice) {
 				case 1: 
-					System.out.println("Load Data");
+					shop.loadData();
 					break;
 				case 2: 
 					System.out.println("Set Shop Name");
 					shop.setShopName();
-					shop.saveShopDetails(shop, "shop.json");
+					System.out.println("Set Shop Name Done");
 					break;
 				case 3: 
 					shop.setHeader(shop);
+					System.out.println("Set Invoice header Done");
+					System.out.println();
 					break;
 				case 4: 
 					applicationMainMenu.printMenu();

@@ -3,7 +3,6 @@ package invoicingSystem;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Invoice {
 	private String customerName;

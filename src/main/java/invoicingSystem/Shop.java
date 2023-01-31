@@ -22,7 +22,6 @@ public class Shop {
 	private String website;
 	private ArrayList<Product> items = new ArrayList<Product>();
 	private ArrayList<Invoice> invoices = new ArrayList<Invoice>();
-	private Gson gson = new GsonBuilder().setPrettyPrinting().create();;
 	private UserInputHandler manager = new UserInputHandler();
 
 	public Shop(String shopName, String tel, String fax, String email, String website) {
@@ -76,27 +75,10 @@ public class Shop {
 		this.website = website;
 	}
 
-	/**
-	 * Saves the given shop details to a file with the specified file name.
-	 * 
-	 * @param shop     The shop details to be saved.
-	 * @param fileName The name of the file to save the shop details to.
-	 */
-	public static void saveShopDetails(Shop shop, String fileName) {
+	public void saveShopDetails(Shop shop1) {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		ArrayList<Shop> shopList = new ArrayList<Shop>();
-
-		try (FileReader reader = new FileReader(fileName)) {
-			shopList = gson.fromJson(reader, new TypeToken<ArrayList<Shop>>() {
-			}.getType());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		shopList.add(shop);
-
-		try (FileWriter writer = new FileWriter(fileName)) {
-			gson.toJson(shopList, writer);
+		try (FileWriter writer = new FileWriter("shop.json")) {
+			gson.toJson(shop1, writer);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -148,6 +130,7 @@ public class Shop {
 	 */
 	public void deserialize() {
 		try (Reader reader = new BufferedReader(new FileReader("items.json"))) {
+			 Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			ArrayList<Product> itemsList = gson.fromJson(reader, new TypeToken<ArrayList<Product>>() {
 			}.getType());
 			for (Product product : itemsList) {
@@ -173,6 +156,7 @@ public class Shop {
 		int itemId = manager.getUserChoice();
 
 		try (Reader reader = new BufferedReader(new FileReader("items.json"))) {
+			 Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			ArrayList<Product> itemsList = gson.fromJson(reader, new TypeToken<ArrayList<Product>>() {
 			}.getType());
 			for (Product product : itemsList) {
@@ -205,8 +189,9 @@ public class Shop {
 
 		System.out.print("Enter the new price: ");
 		double newPrice = Double.parseDouble(manager.getUserChoiceString());
-
+      
 		try (Reader reader = new BufferedReader(new FileReader("items.json"))) {
+			 Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			ArrayList<Product> itemsList = gson.fromJson(reader, new TypeToken<ArrayList<Product>>() {
 			}.getType());
 			for (Product product : itemsList) {
@@ -222,7 +207,7 @@ public class Shop {
 			e.printStackTrace();
 		}
 	}
-
+    //set the Header of the invoice 
 	public void setHeader(Shop shop) {
 
 		HashMap<String, String> header = new HashMap<>();
@@ -230,6 +215,26 @@ public class Shop {
 		header.put("fax", shop.getFax());
 		header.put("email", shop.getEmail());
 		header.put("website", shop.getWebsite());
-	}
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(header);
 
+		try (FileWriter writer = new FileWriter("Invoice header.json")) {
+		    writer.write(json);
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+	}
+	//Loads the data of the shop and prints it to the console.
+	public void loadData()
+	{
+		System.out.println("-------------------------------------------");
+		System.out.println("Shop name: " + getShopName());
+		System.out.println("Shop Telephone: " + getTel());
+		System.out.println("Shop Fax: " + getFax());
+		System.out.println("Shop Email: " + getEmail());
+		System.out.println("Shop Website: " + getWebsite());
+		System.out.println("-------------------------------------------");
+		deserialize();
+	}
 }// End of class
