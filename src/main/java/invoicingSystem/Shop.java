@@ -1,6 +1,7 @@
 package invoicingSystem;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -31,9 +32,11 @@ public class Shop {
 		this.email = email;
 		this.website = website;
 	}
+
 	public String getShopName() {
 		return shopName;
 	}
+
 	public void setShopName() {
 		String newShopName;
 		System.out.print("Enter the new shop name: ");
@@ -44,29 +47,38 @@ public class Shop {
 	public String getTel() {
 		return tel;
 	}
+
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
+
 	public String getFax() {
 		return fax;
 	}
+
 	public void setFax(String fax) {
 		this.fax = fax;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getWebsite() {
 		return website;
 	}
+
 	public void setWebsite(String website) {
 		this.website = website;
 	}
+
 	/**
 	 * Saves the given shop details to a file with the specified file name.
+	 * 
 	 * @param shop     The shop details to be saved.
 	 * @param fileName The name of the file to save the shop details to.
 	 */
@@ -92,11 +104,22 @@ public class Shop {
 
 	/**
 	 * Adds a new item to the list of items and writes the updated list to a JSON
-	 * file.
-	 * The item is created based on user input for item ID, item name, unit price,
-	 * and quantity.
+	 * file. The item is created based on user input for item ID, item name, unit
+	 * price, and quantity.
 	 */
 	public void addItem() {
+
+		try (FileReader reader = new FileReader("items.json")) {
+			Gson gson = new Gson();
+			items = gson.fromJson(reader, new TypeToken<ArrayList<Product>>() {
+			}.getType());
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found, creating new file.");
+			items = new ArrayList<>();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		System.out.print("Enter item ID: ");
 		int itemId = manager.getUserChoice();
 		System.out.print("Enter item name: ");

@@ -9,6 +9,9 @@ public class Applaction {
 	public static void main(String[] args) {
 
 		// create the application main menu
+		int choice ; //for the application main menu
+		int userChoice; //for the sub menu
+		boolean turn = true;
 		Menu applicationMainMenu = new Menu();
 		Shop shop = new Shop("grocerie Shop", "91234567", "24412345", "grocerieShop@gamil.com", "grocerie.com");
 		// create the sub menu for Shop Settings
@@ -51,98 +54,85 @@ public class Applaction {
 
 		UserInputHandler manager = new UserInputHandler();
 		System.out.println("Enter your choice: ");
-		int choice = manager.getUserChoice();
+	    choice = manager.getUserChoice();
 	do {
 			switch (choice) {
-			case 1: {
+			case 1:{
 				MenuItem currMenuItem = applicationMainMenu.getMenuItem(1);
 				System.out.println(subMenuShopSettings.getName());
 				System.out.println();
 				currMenuItem.menu.Show(0);
 				System.out.println("Enter your choice: ");
-				int userChoice = manager.getUserChoice();
+				userChoice = manager.getUserChoice();
 				switch (userChoice) {
-				case 1: {
+				case 1: 
 					System.out.println("Load Data");
 					break;
-				}
-				case 2: {
+				case 2: 
 					System.out.println("Set Shop Name");
 					shop.setShopName();
 					shop.saveShopDetails(shop, "shop.json");
 					break;
-				}
-				case 3: {
+				case 3: 
 					shop.setHeader(shop);
 					break;
-				}
-				case 4: {
+				case 4: 
 					applicationMainMenu.printMenu();
 					System.out.println("Enter your choice: ");
 					choice = manager.getUserChoice();
-					break;
-				}
+					continue;
 				}
 				break;
-			} // End of case 1
+			}
 			case 2: {
 				MenuItem currMenuItem = applicationMainMenu.getMenuItem(2);
 				System.out.println(subMenuManageShopItems.getName());
 				System.out.println();
 				currMenuItem.menu.Show(1);
 				System.out.println("Enter your choice: ");
-				int userChoice2 = manager.getUserChoice();
-				switch (userChoice2) {
-				case 1: {
+				userChoice = manager.getUserChoice();
+				switch (userChoice) {
+				case 1: 
 					System.out.println("Add item");
 					shop.addItem();
 					break;
-				}
-				case 2: {
+				case 2: 
 					shop.deleteItem();
 					System.out.println("Delete item Done");
 					break;
-				}
-				case 3: {
+				case 3:
 					shop.updatePrice();
 					System.out.println("update price Done");
 					break;
-				}
-				case 4: {
+				case 4: 
 					shop.deserialize();
 					break;
-				}
-				case 5: {
+				case 5: 
 					applicationMainMenu.printMenu();
 					System.out.println("Enter your choice: ");
 					choice = manager.getUserChoice();
-					break;
-				}
+					continue;
 				}// End of switch userChoice2
-			} // End of case 2
-			case 3: {
-				break;
+			break;
 			}
-			case 4: {
+			case 3: 
 				break;
-			}
-			case 5: {
+			case 4: 
 				break;
-			}
-			case 6: {
+			case 5: 
 				break;
-			}
-			case 7: {
+			case 6: 
 				break;
-			}
+			case 7: 
+				break;
 			case 8: 
-			{
 			   while (choice == 8) {
 				System.out.println("Are you sure you want to exit? If yes, program ends, if No , then main menu reprinted again");
 				System.out.println("Enter your input: ");
 				String choiceString = manager.getUserChoiceString();
 				if (choiceString.equals("yes") ) {
 					System.out.println("Exiting program...");
+					turn = false;
 					break;
 				}
 				else if(choiceString.equals("no"))
@@ -153,9 +143,8 @@ public class Applaction {
 					break;
 				}
 			}
-			}
 			break;
 			}// End of switch
-		}while(choice != 8); // End of while
+		}while(turn != false); // End of while
 	}//End of class Main
 }// End of Application class
