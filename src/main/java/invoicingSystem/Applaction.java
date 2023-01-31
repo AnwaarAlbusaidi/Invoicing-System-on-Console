@@ -1,6 +1,3 @@
-/**
- * 
- */
 package invoicingSystem;
 
 /**
@@ -71,17 +68,16 @@ public class Applaction {
 				}
 				case 2: {
 					System.out.println("Set Shop Name");
-					shop.SetShopName();
+					shop.setShopName();
 					shop.saveShopDetails(shop, "shop.json");
 					break;
 				}
 				case 3: {
-					System.out.println("Set Invoice Header");
+					shop.setHeader(shop);
 					break;
 				}
 				case 4: {
-					applicationMainMenu.Show(0);
-					choice = 0;
+					applicationMainMenu.printMenu();
 					System.out.println("Enter your choice: ");
 					choice = manager.getUserChoice();
 					break;
@@ -96,7 +92,6 @@ public class Applaction {
 				currMenuItem.menu.Show(1);
 				System.out.println("Enter your choice: ");
 				int userChoice2 = manager.getUserChoice();
-				;
 				switch (userChoice2) {
 				case 1: {
 					System.out.println("Add item");
@@ -118,8 +113,7 @@ public class Applaction {
 					break;
 				}
 				case 5: {
-					applicationMainMenu.Show(0);
-					choice = 0;
+					applicationMainMenu.printMenu();
 					System.out.println("Enter your choice: ");
 					choice = manager.getUserChoice();
 					break;
@@ -142,6 +136,7 @@ public class Applaction {
 				break;
 			}
 			case 8: 
+			{
 			   while (choice == 8) {
 				System.out.println("Are you sure you want to exit? If yes, program ends, if No , then main menu reprinted again");
 				System.out.println("Enter your input: ");
@@ -152,12 +147,12 @@ public class Applaction {
 				}
 				else if(choiceString.equals("no"))
 				{
-					applicationMainMenu.Show(0);
-					choice = 0;
+					applicationMainMenu.printMenu();
 					System.out.println("Enter your choice: ");
 					choice = manager.getUserChoice();
 					break;
 				}
+			}
 			}
 			break;
 			}// End of switch

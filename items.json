@@ -1,8 +1,1 @@
-[
-  {
-    "itemId": 234,
-    "itemName": "orange",
-    "unitPrice": 4.0,
-    "quantity": 15
-  }
-]
+[{"itemId":567,"itemName":"tv","unitPrice":2.0,"quantity":14}]

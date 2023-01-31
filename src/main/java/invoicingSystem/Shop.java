@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.util.ArrayList;
-
+import java.util.HashMap;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -200,9 +200,13 @@ public class Shop {
 		}
 	}
 
-	public void setInvoiceHeader()
-	{
-		Invoice invoice = new Invoice(fax, email, null, items);
+	public void setHeader(Shop shop) {
+
+		HashMap<String, String> header = new HashMap<>();
+		header.put("tel", shop.getTel());
+		header.put("fax", shop.getFax());
+		header.put("email", shop.getEmail());
+		header.put("website", shop.getWebsite());
 	}
-	
+
 }// End of class
