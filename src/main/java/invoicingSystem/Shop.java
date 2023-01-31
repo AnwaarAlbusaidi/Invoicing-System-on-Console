@@ -1,12 +1,15 @@
 package invoicingSystem;
 
-import java.io.File;
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
+import javax.sound.midi.VoiceStatus;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -18,6 +21,7 @@ public class Shop {
 	   private String fax;
 	   private String email;
 	   private String website;
+	  // ArrayList<HashMap<Product, Object>> items = new ArrayList<>();
 	   private ArrayList<Product> items = new ArrayList<Product>();
 	   private ArrayList<Invoice> invoices = new ArrayList<Invoice>();
 	   private Gson gson = new GsonBuilder().setPrettyPrinting().create();;
@@ -60,9 +64,9 @@ public class Shop {
 		   }
 	   
 	   public void addItem() {
+		   
 		   System.out.print("Enter item ID: ");
 		   int itemId = manager.getUserChoice();
-
 		   System.out.print("Enter item name: ");
 		   String itemName = manager.getUserChoiceString();
 
@@ -85,11 +89,10 @@ public class Shop {
 		     e.printStackTrace();
 		   }
 		 }
-	    
-	   public void readAndPrintItems() {
-		   try (Reader reader = new FileReader("items.json")) {
-		    //jsonReader.setLenient(true);
-			ArrayList<Product> itemsList = gson.fromJson(reader, new TypeToken<ArrayList<Product>>(){}.getType());
+	   
+	   public void deserialize() {
+		   try (Reader reader = new BufferedReader(new FileReader("items.json"))) {
+			List<Product> itemsList = gson.fromJson(reader, new TypeToken<List<Product>>(){}.getType());
 		     for (Product product : itemsList) 
 		     {
 		       System.out.println("Product id: " + product.getItemId());

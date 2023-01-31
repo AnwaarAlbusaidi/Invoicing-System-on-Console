@@ -14,7 +14,6 @@ public class Applaction {
 		// create the application main menu
 		Menu applicationMainMenu = new Menu();
 		Shop shop = new Shop("grocerie Shop", "91234567", "24412345", "grocerieShop@gamil.com", "grocerie.com");
-		Invoice invoice = null;
 		// create the sub menu for Shop Settings
 		Menu subMenuShopSettings = new Menu();
 		subMenuShopSettings.setName("Shop Settings");
@@ -78,11 +77,11 @@ public class Applaction {
 				}
 				case 3: {
 					System.out.println("Set Invoice Header");
-					invoice.setInvoiceHeader(shop);
 					break;
 				}
 				case 4: {
 					applicationMainMenu.Show(0);
+					choice = 0;
 					System.out.println("Enter your choice: ");
 					choice = manager.getUserChoice();
 					break;
@@ -106,21 +105,20 @@ public class Applaction {
 				}
 				case 2: {
 					System.out.println("Delete item");
-					// shop.deleteItem();
 					break;
 				}
 				case 3: {
 					System.out.println("change item price");
-					// shop.changeItemPrice();
 					break;
 				}
 				case 4: {
 					System.out.println("Report all item");
-					shop.readAndPrintItems();
+					shop.deserialize();
 					break;
 				}
 				case 5: {
 					applicationMainMenu.Show(0);
+					choice = 0;
 					System.out.println("Enter your choice: ");
 					choice = manager.getUserChoice();
 					break;
@@ -142,7 +140,8 @@ public class Applaction {
 			case 7: {
 				break;
 			}
-			case 8: {
+			case 8: 
+			   while (choice == 8) {
 				System.out.println("Are you sure you want to exit? If yes, program ends, if No , then main menu reprinted again");
 				System.out.println("Enter your input: ");
 				String choiceString = manager.getUserChoiceString();
@@ -153,11 +152,13 @@ public class Applaction {
 				else if(choiceString.equals("no"))
 				{
 					applicationMainMenu.Show(0);
+					choice = 0;
 					System.out.println("Enter your choice: ");
 					choice = manager.getUserChoice();
 					break;
 				}
 			}
+			break;
 			}// End of switch
 		}while(choice != 8); // End of while
 	}//End of class Main
