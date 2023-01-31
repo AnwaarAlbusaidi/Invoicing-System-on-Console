@@ -104,15 +104,16 @@ public class Applaction {
 					break;
 				}
 				case 2: {
-					System.out.println("Delete item");
+					shop.deleteItem();
+					System.out.println("Delete item Done");
 					break;
 				}
 				case 3: {
-					System.out.println("change item price");
+					shop.updatePrice();
+					System.out.println("update price Done");
 					break;
 				}
 				case 4: {
-					System.out.println("Report all item");
 					shop.deserialize();
 					break;
 				}

@@ -1,14 +1,12 @@
 
 package invoicingSystem;
 
-import java.util.ArrayList;
-
 public class Product {
 	  private int itemId;
 	  private String itemName;
 	  private double unitPrice;
 	  private int quantity;
-	  private ArrayList<Product> allItems;
+	  //private ArrayList<Product> allItems;
 	  
 	  public Product(int itemId, String itemName, double unitPrice, int quantity) {
 	    this.itemId = itemId;
