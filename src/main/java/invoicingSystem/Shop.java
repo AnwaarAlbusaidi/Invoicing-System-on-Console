@@ -1,12 +1,12 @@
 package invoicingSystem;
 
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -76,73 +76,27 @@ public class Shop {
 		   items.add(product);
 
 		   try (FileWriter writer = new FileWriter("items.json", true)) {
-		     gson.toJson(product, writer);
-		     writer.write(System.getProperty("line.separator"));
+		        Gson gson = new Gson();
+				String json = gson.toJson(items);
+				writer.write(json);
+				writer.write(System.getProperty("line.separator"));
+				writer.flush();
 		   } catch (IOException e) {
 		     e.printStackTrace();
 		   }
 		 }
-
-	   
-	   public void deleteItem() {
-		    System.out.print("Enter item ID: ");
-		    int itemId = manager.getUserChoice();
-		 
-		    int index = -1;
-		    for (int i = 0; i < items.size(); i++) {
-		      if (items.get(i).getItemId() == itemId) {
-		        index = i;
-		        break;
-		      }
-		    }
-		    
-		    if (index == -1) {
-		      System.out.println("Item not found.");
-		    } else {
-		      items.remove(index);
-		      
-		      try (FileWriter writer = new FileWriter("items.json")) {
-		        gson.toJson(items, writer);
-		      } catch (IOException e) {
-		        e.printStackTrace();
-		      }
-		    }
-		  }
-	   
-	   public void changeItemPrice() {
-		    System.out.print("Enter item ID: ");
-		    int itemId = manager.getUserChoice();
-		    
-		    int index = -1;
-		    for (int i = 0; i < items.size(); i++) {
-		      if (items.get(i).getItemId() == itemId) {
-		        index = i;
-		        break;
-		      }
-		    }
-		    
-		    if (index == -1) {
-		      System.out.println("Item not found.");
-		      return;
-		    }
-		    
-		    System.out.print("Enter new price: ");
-		    double unitPrice = Double.parseDouble(manager.getUserChoiceString());
-		    
-		    Product product = items.get(index);
-		    product.setUnitPrice(unitPrice);
-	   }
 	    
 	   public void readAndPrintItems() {
 		   try (Reader reader = new FileReader("items.json")) {
-			ArrayList <Product> itemsList = gson.fromJson(reader, new TypeToken<ArrayList<Product>>(){}.getType());
+		    //jsonReader.setLenient(true);
+			ArrayList<Product> itemsList = gson.fromJson(reader, new TypeToken<ArrayList<Product>>(){}.getType());
 		     for (Product product : itemsList) 
 		     {
-		       System.out.println(product.getItemId());
-		       System.out.println(product.getItemName());
-		       System.out.println(product.getUnitPrice());
-		       System.out.println(product.getQuantity());
-		     }
+		       System.out.println("Product id: " + product.getItemId());
+		       System.out.println("Product Name: " + product.getItemName());
+		       System.out.println("Product Unit Price: " + product.getUnitPrice());
+		       System.out.println("Product Quantity : " + product.getQuantity());
+   	     }
 		   } catch (IOException e) {
 		     e.printStackTrace();
 		   }
