@@ -1,14 +1,1 @@
-[
-  {
-    "itemId": 567,
-    "itemName": "tv",
-    "unitPrice": 2.0,
-    "quantity": 14
-  },
-  {
-    "itemId": 345,
-    "itemName": "orange",
-    "unitPrice": 1.0,
-    "quantity": 13
-  }
-]
+[{"itemId":123,"itemName":"apple","unitPrice":1.0,"quantity":15},{"itemId":234,"itemName":"orange","unitPrice":1.0,"quantity":16},{"itemId":987,"itemName":"water","unitPrice":1.0,"quantity":30}]

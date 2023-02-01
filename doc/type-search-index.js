@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"invoicingSystem","l":"Applaction"},{"p":"invoicingSystem","l":"Invoice"},{"p":"invoicingSystem","l":"Menu"},{"p":"invoicingSystem","l":"MenuItem"},{"p":"invoicingSystem","l":"Product"},{"p":"invoicingSystem","l":"Shop"},{"p":"invoicingSystem","l":"UserInputHandler"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"invoicingSystem","l":"Shop"}];updateSearchResults();

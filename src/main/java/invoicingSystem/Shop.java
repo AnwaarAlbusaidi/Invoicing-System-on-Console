@@ -14,6 +14,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * The Shop class represents a Shop object that holds the shop name, telephone
+ * number, fax number, email and web site.
+ */
 public class Shop {
 	String shopName;
 	private String tel;
@@ -24,6 +28,15 @@ public class Shop {
 	private ArrayList<Invoice> invoices = new ArrayList<Invoice>();
 	private UserInputHandler manager = new UserInputHandler();
 
+	/**
+	 * Constructs a new Shop object with the given parameters.
+	 * 
+	 * @param shopName the name of the shop
+	 * @param tel      the telephone number of the shop
+	 * @param fax      the fax number of the shop
+	 * @param email    the email of the shop
+	 * @param website  the website of the shop
+	 */
 	public Shop(String shopName, String tel, String fax, String email, String website) {
 		this.shopName = shopName;
 		this.tel = tel;
@@ -32,10 +45,18 @@ public class Shop {
 		this.website = website;
 	}
 
+	/**
+	 * Returns the name of the shop.
+	 * 
+	 * @return the shop name
+	 */
 	public String getShopName() {
 		return shopName;
 	}
 
+	/**
+	 * Changes the name of the shop by asking the user for a new name.
+	 */
 	public void setShopName() {
 		String newShopName;
 		System.out.print("Enter the new shop name: ");
@@ -43,38 +64,83 @@ public class Shop {
 		this.shopName = newShopName;
 	}
 
+	/**
+	 * Returns the telephone number of the shop.
+	 * 
+	 * @return the telephone number of the shop
+	 */
 	public String getTel() {
 		return tel;
 	}
 
+	/**
+	 * Sets the telephone number of the shop.
+	 * 
+	 * @param tel the new telephone number of the shop
+	 */
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
 
+	/**
+	 * Returns the fax number of the shop.
+	 * 
+	 * @return the fax number of the shop
+	 */
 	public String getFax() {
 		return fax;
 	}
 
+	/**
+	 * Sets the fax number of the shop.
+	 * 
+	 * @param fax the new fax number of the shop
+	 */
 	public void setFax(String fax) {
 		this.fax = fax;
 	}
 
+	/**
+	 * Returns the email of the shop.
+	 * 
+	 * @return the email of the shop
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * Sets the email of the shop.
+	 * 
+	 * @param email the new email of the shop
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	/**
+	 * Returns the web site of the shop.
+	 * 
+	 * @return the web site of the shop
+	 */
 	public String getWebsite() {
 		return website;
 	}
 
+	/**
+	 * Sets the web site of the shop.
+	 * 
+	 * @param website the new web site of the shop
+	 */
 	public void setWebsite(String website) {
 		this.website = website;
 	}
 
+	/**
+	 * Saves the details of a given Shop instance to a file named "shop.json".
+	 * 
+	 * @param shop1 the Shop instance whose details will be saved
+	 */
 	public void saveShopDetails(Shop shop1) {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		try (FileWriter writer = new FileWriter("shop.json")) {
@@ -130,7 +196,7 @@ public class Shop {
 	 */
 	public void deserialize() {
 		try (Reader reader = new BufferedReader(new FileReader("items.json"))) {
-			 Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			ArrayList<Product> itemsList = gson.fromJson(reader, new TypeToken<ArrayList<Product>>() {
 			}.getType());
 			for (Product product : itemsList) {
@@ -156,7 +222,7 @@ public class Shop {
 		int itemId = manager.getUserChoice();
 
 		try (Reader reader = new BufferedReader(new FileReader("items.json"))) {
-			 Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			ArrayList<Product> itemsList = gson.fromJson(reader, new TypeToken<ArrayList<Product>>() {
 			}.getType());
 			for (Product product : itemsList) {
@@ -189,9 +255,9 @@ public class Shop {
 
 		System.out.print("Enter the new price: ");
 		double newPrice = Double.parseDouble(manager.getUserChoiceString());
-      
+
 		try (Reader reader = new BufferedReader(new FileReader("items.json"))) {
-			 Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			ArrayList<Product> itemsList = gson.fromJson(reader, new TypeToken<ArrayList<Product>>() {
 			}.getType());
 			for (Product product : itemsList) {
@@ -207,7 +273,8 @@ public class Shop {
 			e.printStackTrace();
 		}
 	}
-    //set the Header of the invoice 
+
+	// set the Header of the invoice
 	public void setHeader(Shop shop) {
 
 		HashMap<String, String> header = new HashMap<>();
@@ -215,19 +282,19 @@ public class Shop {
 		header.put("fax", shop.getFax());
 		header.put("email", shop.getEmail());
 		header.put("website", shop.getWebsite());
-		
+
 		Gson gson = new Gson();
 		String json = gson.toJson(header);
 
 		try (FileWriter writer = new FileWriter("Invoice header.json")) {
-		    writer.write(json);
+			writer.write(json);
 		} catch (IOException e) {
-		    e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
-	//Loads the data of the shop and prints it to the console.
-	public void loadData()
-	{
+
+	// Loads the data of the shop and prints it to the console.
+	public void loadData() {
 		System.out.println("-------------------------------------------");
 		System.out.println("Shop name: " + getShopName());
 		System.out.println("Shop Telephone: " + getTel());
